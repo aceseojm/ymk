@@ -26,10 +26,11 @@ body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; backgroun
 header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   background: var(--green-deep); box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-}
-.header-top {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 40px; height: 84px;
+}
+.header-top {
+  display: contents;
 }
 .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer; }
 .logo-img {
@@ -49,14 +50,15 @@ header {
   letter-spacing: 0.3px;
 }
 nav {
-  background: transparent; border-top: 1px solid rgba(255,255,255,0.12);
-  display: flex; justify-content: center;
+  background: transparent; border-top: none;
+  display: flex; align-items: center; justify-content: center;
+  flex: 1;
 }
 .nav-items { display: flex; list-style: none; }
 .nav-item { position: relative; }
 .nav-link {
   display: block; padding: 14px 24px; color: rgba(255,255,255,0.85);
-  font-size: 14px; font-weight: 600; cursor: pointer;
+  font-size: 16px; font-weight: 600; cursor: pointer;
   transition: all 0.2s; white-space: nowrap; border-bottom: 3px solid transparent;
 }
 .nav-link:hover, .nav-link.active { color: var(--white); border-bottom-color: var(--gold); }
@@ -74,7 +76,7 @@ nav {
 .dropdown-link:hover { background: var(--green-pale); border-left-color: var(--green-mid); color: var(--green-deep); }
 
 /* PAGE SYSTEM */
-.page { display: none; padding-top: 132px; min-height: 100vh; }
+.page { display: none; padding-top: 84px; min-height: 100vh; }
 .page.active { display: block; }
 
 /* SECTIONS */
@@ -91,8 +93,9 @@ nav {
 /* HERO */
 .hero {
   background: url('images/field.png') center center / cover no-repeat;
-  min-height: calc(100vh - 112px); display: flex; align-items: center;
-  padding: 80px 40px; position: relative; overflow: hidden;
+  min-height: 100vh; display: flex; align-items: center;
+  padding: calc(84px + 80px) 40px 80px; position: relative; overflow: hidden;
+  margin-top: -84px;
 }
 .hero::before {
   content: ''; position: absolute; inset: 0;
@@ -426,7 +429,6 @@ footer {
         </div>
       </div>
     </div>
-    <a href="tel:031-8018-2034" class="header-contact">📞 B2B 대량구매/OEM 직통상담: 031-8018-2034</a>
   </div>
   <nav>
     <ul class="nav-items">
@@ -442,7 +444,7 @@ footer {
         </div>
       </li>
       <li class="nav-item">
-        <div class="nav-link" onclick="showPage('agri')">B2B 농업용 솔루션</div>
+        <div class="nav-link" onclick="showPage('agri')">농업용 솔루션</div>
         <div class="dropdown">
           <div class="dropdown-link" onclick="showPage('agri','humas')">휴머스 프리미엄</div>
           <div class="dropdown-link" onclick="showPage('agri','amino')">아미노 골드</div>
@@ -450,13 +452,13 @@ footer {
         </div>
       </li>
       <li class="nav-item">
-        <div class="nav-link" onclick="showPage('golf')">B2B 골프·조경용</div>
+        <div class="nav-link" onclick="showPage('golf')">골프·조경용</div>
         <div class="dropdown">
           <div class="dropdown-link" onclick="showPage('golf','solution')">골프장 전용 솔루션</div>
         </div>
       </li>
       <li class="nav-item">
-        <div class="nav-link" onclick="showPage('garden')">B2C 홈가드닝</div>
+        <div class="nav-link" onclick="showPage('garden')">홈가드닝</div>
         <div class="dropdown">
           <div class="dropdown-link" onclick="showPage('garden','products')">가정용 프리미엄 제품</div>
           <div class="dropdown-link" onclick="showPage('garden','reviews')">지사님들의 이야기</div>
@@ -472,6 +474,7 @@ footer {
       </li>
     </ul>
   </nav>
+  <a href="tel:031-8018-2034" class="header-contact">📞 B2B 대량구매/OEM 직통상담: 031-8018-2034</a>
 </header>
 
 <!-- ================= HOME PAGE ================= -->
@@ -482,14 +485,22 @@ footer {
     <div class="hero-content">
       <div class="hero-badge">🌱 OMRI Listed · 친환경 인증 프리미엄 비료</div>
       <h1>자연이 허락하고,<br><em>세계가 검증한</em><br>완벽한 영양. YMK 비료</h1>
-      <p>미국 유기농 인증기관(OMRI) 인증 프리미엄 원료부터 강원도 품질인증, 대기업 메타 공식 설정 및 글로벌 파트너십까지. YMK의 타협없는 기술력이 친환경 농업의 내일을 이끕니다.</p>
-      <div class="hero-badges">
-        <div class="cert-badge">🇺🇸 <span>OMRI LISTED</span></div>
-        <div class="cert-badge">🏅 <span>강원대학교 품질인증</span></div>
-        <div class="cert-badge">🌍 <span>KG케미칼 메타 공식 설정</span></div>
-        <div class="cert-badge">🏭 <span>영명(Young Ming) 40년 기술</span></div>
+    </div>
+  </div>
+
+  <!-- Hero 하단 요약 -->
+  <div style="background: var(--green-deep);">
+    <div style="max-width:1200px;margin:0 auto;padding:48px 40px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center">
+      <div>
+        <p style="font-size:16px;color:rgba(255,255,255,0.85);line-height:1.8;margin-bottom:24px;max-width:680px">미국 유기농 인증기관(OMRI) 인증 프리미엄 원료부터 강원도 품질인증, 대기업 메타 공식 설정 및 글로벌 파트너십까지. YMK의 타협없는 기술력이 친환경 농업의 내일을 이끕니다.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <div class="cert-badge">🇺🇸 <span>OMRI LISTED</span></div>
+          <div class="cert-badge">🏅 <span>강원대학교 품질인증</span></div>
+          <div class="cert-badge">🌍 <span>KG케미칼 메타 공식 설정</span></div>
+          <div class="cert-badge">🏭 <span>영명(Young Ming) 40년 기술</span></div>
+        </div>
       </div>
-      <div class="hero-cta">
+      <div style="display:flex;flex-direction:column;gap:12px;flex-shrink:0">
         <button class="btn-primary" onclick="showPage('agri')">농업용 솔루션 보기</button>
         <button class="btn-outline" onclick="showPage('support','contact')">견적 문의하기</button>
       </div>
@@ -1473,6 +1484,7 @@ function handleSubmit() {
 
 // Init
 showPage('home');
+
 </script>
 </body>
 </html>
