@@ -25,9 +25,13 @@ body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; backgroun
 /* HEADER */
 header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  background: var(--green-deep); box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  background: transparent; box-shadow: none;
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 40px; height: 84px;
+  transition: background 0.35s ease, box-shadow 0.35s ease;
+}
+header.solid {
+  background: var(--green-deep); box-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
 .header-top {
   display: contents;
@@ -1501,6 +1505,28 @@ function showSubPage(pageId, subId, clickedEl) {
 function handleSubmit() {
   alert('상담 신청이 접수되었습니다.\n담당자가 24시간 내 연락드리겠습니다.\n\n와이엠케이 주식회사\n☎ 031-8018-2034');
 }
+
+// Header transparency logic
+let currentPage = 'home';
+
+function updateHeaderStyle() {
+  const header = document.querySelector('header');
+  if (currentPage === 'home' && window.scrollY < 60) {
+    header.classList.remove('solid');
+  } else {
+    header.classList.add('solid');
+  }
+}
+
+window.addEventListener('scroll', updateHeaderStyle);
+
+// Patch showPage to track current page
+const _origShowPage = showPage;
+showPage = function(pageId, subId) {
+  currentPage = pageId;
+  _origShowPage(pageId, subId);
+  updateHeaderStyle();
+};
 
 // Init
 showPage('home');
